@@ -23,6 +23,14 @@ let weather = {
     },
     search: function() {
         this.fetchWeather(document.querySelector('.search-bar').value);
+        this.fetchFiveDay(document.querySelector('.search-bar').value);
+    },
+    fetchFiveDay: function(city) {
+        fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=' + this.apiKey)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+        })
     }
 }
 
