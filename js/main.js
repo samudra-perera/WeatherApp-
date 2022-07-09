@@ -22,11 +22,12 @@ let weather = {
         document.querySelector('.city').innerText = 'Weather in ' + name;
         document.querySelector('.icon').src = 'http://openweathermap.org/img/w/' + icon + '.png';
         document.querySelector('.description').innerText = description;
-        document.querySelector('.temp').innerText = temp + ' °C';
+        document.querySelector('.temp').innerText = Math.round(temp) + ' °C';
         document.querySelector('.humidity').innerText = 'Humidity: ' + humidity + '%';
         document.querySelector('.wind').innerText = 'Wind Speed: ' + speed + ' Km/h'
         document.querySelector('.date').innerText = month + ' ' + day + ', ' + year
         document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name + "')"
+        document.querySelector('.weather').classList.remove('loading')
     },
 
     search: function() {
@@ -59,6 +60,8 @@ let weather = {
         document.querySelector('.d4Temp').innerText = Math.round(d4Temp) + ' °C';
         document.querySelector('.d5Icon').src = 'http://openweathermap.org/img/w/' + d5Icon + '.png';
         document.querySelector('.d5Temp').innerText = Math.round(d5Temp) + ' °C';
+        document.querySelector('.fourDay').classList.remove('loading')
+        document.querySelector('.forecastTitle').classList.remove('loading')
         }
 }
 
@@ -71,3 +74,8 @@ document.querySelector('.search-bar').addEventListener('keyup', function(event) 
         weather.search()
     }
 })
+
+////weather.fetchWeather('Toronto')
+////weather.fetchFiveDay('Toronto')
+
+// Last thing to do is add the Air Quality Index to the weather app and then complete the JS and Styling and it will be ready to be the first portfolio proj
