@@ -128,3 +128,16 @@ h2.forecastTitle {
 .forecastTitle.loading {
     display: none;
 }
+
+@media only screen and (max-width: 375px) {
+    .day {
+        border: none;
+        margin: 0em 0em;
+        padding: 0em .5em
+    }
+
+    .fourDay div img {
+        height: 50px;
+        width: 50px;
+    }
+}
