@@ -34,7 +34,7 @@ const arrayOfForecastDays = [
     [list[18].weather[0].icon ,list[18].main.temp, this.daysOfTheWeek[index + 2]]
     ]
 
-for(let i = 0; i < days.length; i++) { //example to demonstrate the general idea
+for(let i = 0; i < arrayOfForecastDays.length; i++) { //example to demonstrate the general idea
     icon[i].src = arrayOfForecaseDays[i][0] 
     temps[i].innerText = arrayOfForecaseDays[i][1]
     days[i].innerText = arrayOfForcastDays[i][2]
