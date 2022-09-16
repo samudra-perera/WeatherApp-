@@ -1,17 +1,17 @@
 let weather = {
     "apiKey": "162c856572321f7ca92f87b69ecc4a5b",
 
-    daysOfTheWeek: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thur'],
+    daysOfTheWeek: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thur'], //Used in figuring out the dates for the forecast, the furthest date out from sunday is Thursday
 
     fetchWeather: function(city) {
         fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + this.apiKey)
         .then((res) => res.json())
         .then((data) => {
-            this.displayWeather(data)
+            this.displayWeather(data) //Passes in the response data into the displayFunction method to handle the DOM manipulation
         })
     },
 
-    displayWeather: function(data) {
+    displayWeather: function(data) { //destructure the data and pass into the DOM elements
         const {name} = data;
         const {icon, description} = data.weather[0];
         const {temp, humidity} = data.main;
@@ -26,10 +26,10 @@ let weather = {
         document.querySelector('.wind').innerText = 'Wind Speed: ' + speed + ' Km/h'
         document.querySelector('.date').innerText = strDay + ' ' + month + ' ' + day + ', ' + year
         document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name + "')"
-        document.querySelector('.weather').classList.remove('loading')
+        document.querySelector('.weather').classList.remove('loading') // to hide before the search
     },
 
-    search: function() {
+    search: function() { //this method takes in the searchbar values to be used in the API fetch
         this.fetchWeather(document.querySelector('.search-bar').value);
         this.fetchFiveDay(document.querySelector('.search-bar').value);
     },
@@ -38,14 +38,14 @@ let weather = {
         fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=' + this.apiKey)
         .then((res) => res.json())
         .then((dataForecast) => {
-            this.displayeFiveDay(dataForecast)
+            this.displayeFiveDay(dataForecast) //Passes in the response data into the displayFunction method to handle the DOM manipulation
         })
     },
 
-    displayeFiveDay: function(dataForecast) {
+    displayeFiveDay: function(dataForecast) { //destructure the data and pass into the DOM elements
         const {list} = dataForecast;
-        const date = new Date().toString().split(' ')[0]
-        const index = this.daysOfTheWeek.indexOf(date)
+        const date = new Date().toString().split(' ')[0] //Gets the current data 
+        const index = this.daysOfTheWeek.indexOf(date) //finds the index of the current date in the daysOFTheWeek Array
         const [d2Icon, d2Temp, d2Day] = [list[6].weather[0].icon ,list[6].main.temp, this.daysOfTheWeek[index + 1]]
         const [d3Icon, d3Temp, d3Day] = [list[18].weather[0].icon ,list[18].main.temp, this.daysOfTheWeek[index + 2]]
         const [d4Icon, d4Temp, d4Day] = [list[26].weather[0].icon ,list[26].main.temp, this.daysOfTheWeek[index + 3]]
@@ -62,9 +62,9 @@ let weather = {
         document.querySelector('.d5Day').innerText = d5Day
         document.querySelector('.d5Icon').src = 'http://openweathermap.org/img/w/' + d5Icon + '.png';
         document.querySelector('.d5Temp').innerText = Math.round(d5Temp) + ' °C';
-        document.querySelector('.fourDay').classList.remove('loading')
+        document.querySelector('.fourDay').classList.remove('loading') // to hide before the search
         document.querySelector('.forecastTitle').classList.remove('loading')
-        }
+    }
 }
 
 document.querySelector('.search button').addEventListener('click', function(){
