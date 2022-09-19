@@ -1,7 +1,7 @@
 # Weather Dashboard
 A weather dashboard that displays the weather data along with the 5 day forecast. The background of the application changes to match the search location. (ie Toronto will display a CN Tower background for example)
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** https://capable-yeot-c410f2.netlify.app/
 
 ![alt tag](http://placecorgi.com/1200/650)
 
